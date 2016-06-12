@@ -1,0 +1,37 @@
+<%= form_for(delegate) do |f| %>
+  <% if delegate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(delegate.errors.count, "error") %> prohibited this delegate from being saved:</h2>
+
+      <ul>
+      <% delegate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pre_comma %>
+    <%= f.text_field :pre_comma %>
+  </div>
+
+  <div class="field">
+    <%= f.label :post_comma %>
+    <%= f.text_field :post_comma %>
+  </div>
+
+  <div class="field">
+    <%= f.label :primary_funding_url %>
+    <%= f.text_area :primary_funding_url %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

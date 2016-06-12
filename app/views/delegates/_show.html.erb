@@ -1,0 +1,29 @@
+<amp-fit-text
+  height="40px">
+  <%= link_to pretty_name(delegate), delegate_path(delegate) %>
+</amp-fit-text>
+<div class="show-delegate">
+  <amp-carousel width=310 height=513  layout="responsive" type="slides">
+    <% delegate.links.split(" ").each_with_index do |l,i| %>
+      <div>
+        <% if l[/gofundme/] %>
+          <amp-iframe height=473 width=468
+              sandbox="allow-scripts allow-same-origin allow-popups"
+              layout="fixed"
+              frameborder="0"
+              src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+            <amp-img height=513 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+          </amp-iframe>
+        <% else %>
+          <a href="<%= l %>">
+            Fundraising link #<%= i %>
+          </a>
+        <% end %>
+      </div>
+    <% end %>
+  </amp-carousel>
+</div>
+
+<amp-social-share id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+</br>
+<%= link_to "See All", delegates_path %>
