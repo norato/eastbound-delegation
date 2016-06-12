@@ -6,7 +6,7 @@ class DelegatesController < ApplicationController
   # GET /delegates.json
   def index
     @delegates = Rails.cache.fetch(:delegates) do
-      Delegate.where("links ilike ?", "%gofundme%").group_by {|x| x.state }
+      Delegate.where("links like ?", "%gofundme%").group_by {|x| x.state }
     end
   end
 
