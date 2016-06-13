@@ -1,59 +1,67 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Delegates</h1>
 <amp-accordion>
-  <% @delegates.each do |k,v| %>
-    <section>
-      <h2 class='state'>
-        <%= "(#{v.length})&nbsp;#{k}".html_safe %>
-      </h2>
-      <div>
-        <amp-carousel
-          media="(min-width: 520px)"
-          id="<%= k %>"
-          height=614
-          width=626
-          layout="fixed"
-          type="slides">
-          <% v.each do |delegate| %>
-            <div class="delegate <%= delegate.state %>">
-              <amp-fit-text
-                height="40px">
-                <%= link_to pretty_name(delegate), delegate_path(delegate) %>
-              </amp-fit-text>
-              <% delegate.links.split(" ").each_with_index do |l,i| %>
-                <% if l[/gofundme/] %>
-                  <amp-iframe height=473 width=468
-                      sandbox="allow-scripts allow-same-origin allow-popups"
-                      layout="fixed"
-                      frameborder="0"
-                      src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
-                    <amp-img height=468 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
-                  </amp-iframe>
-                <% end %>
-              <% end %>
-              </br>
-                <amp-social-share media="(min-width: 520px)" id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
-            </div>
-          <% end %>
-        </amp-carousel>
-        <div class='delegate'>
-          <% v.each do |delegate| %>
+  <section expanded>
+    <h2 class='state'>
+      <%= "#{params[:state]}&nbsp;(#{@delegates.length})".html_safe %>
+    </h2>
+    <div>
+      <amp-carousel
+        media="(min-width: 520px)"
+        id="<%= params[:state] %>"
+        height=614
+        layout="fixed-height"
+        type="carousel">
+        <% @delegates.each do |delegate| %>
+          <div class="delegate <%= delegate.state %>">
             <amp-fit-text
-              media="(max-width: 519px)"
-              width="300px"
               height="40px">
               <%= link_to pretty_name(delegate), delegate_path(delegate) %>
             </amp-fit-text>
             <% delegate.links.split(" ").each_with_index do |l,i| %>
               <% if l[/gofundme/] %>
-                <%= link_to l do %>
-                  <div class='donation'></div>
-                <% end %>
-                <amp-social-share media="(max-width: 519px)" id="tweeter" height="90px" width="90px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+                <amp-iframe height=473 width=468
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                    layout="fixed"
+                    frameborder="0"
+                    src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+                  <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+                </amp-iframe>
+              <% else %>
+                <a href="<%= l %>">
+                  Fundraising link #<%= i %>
+                </a>
+                </br>
               <% end %>
             <% end %>
+            </br>
+            <amp-social-share media="(min-width: 520px)" id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+          </div>
+        <% end %>
+      </amp-carousel>
+      <div>
+        <% @delegates.each do |delegate| %>
+          <amp-fit-text
+            media="(max-width: 519px)"
+            height="40px">
+            <%= link_to pretty_name(delegate), delegate_path(delegate) %>
+          </amp-fit-text>
+          <% delegate.links.split(" ").each_with_index do |l,i| %>
+            <% if l[/gofundme/] %>
+              <amp-iframe height=473 width=468
+                  media="(max-width: 519px)"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
+                  layout="fixed"
+                  frameborder="0"
+                  src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+                <amp-img height=400 width=400 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+              </amp-iframe>
+              <amp-social-share media="(max-width: 519px)" id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+            <% end %>
           <% end %>
-        </div>
+        <% end %>
       </div>
-    </section>
-  <% end %>
+    </div>
+  </section>
 </amp-accordion>

@@ -1,11 +1,15 @@
-require 'csv'
 class DelegatesController < ApplicationController
   before_action :set_delegate, only: [:show, :edit, :update, :destroy]
 
   # GET /delegates
   # GET /delegates.json
   def index
-    @delegates = Delegate.where("links like ?", "%gofundme%").group_by {|x| x.state }
+    if params[:state]
+      @delegates = Delegate.where(state: params[:state]).where("links like ?", "%gofundme%")
+    else
+      @delegates = Delegate.all
+      render "boring_index"
+    end
   end
 
   # GET /delegates/1
