@@ -26,23 +26,22 @@
 		}
 
     amp-social-share {
-      margin-top: 1em;
     }
 
     .amp-carousel-button-next {
       height: 100%;
       width: 5em;
-      margin-right: -16px;
     }
     .amp-carousel-button-prev {
       height: 100%;
       width: 5em;
-      margin-left: -16px;
     }
 
 		.delegate {
 			text-align: center;
+      border-bottom: 1px dashed #ddd;
 		}
+
 		.show-delegate {
 			max-width: 468px;
 			max-height: 473px;
@@ -52,6 +51,23 @@
     a {
       color: #075DA4;
     }
+
+    a .donation {
+      margin-left: auto;
+      margin-right: auto;
+      height: 90px;
+      width: 90px;
+      background: url("/cash.svg");
+      background-size: contain;
+      background-position: center top;
+    }
+
+    @media (min-width: 520px) {
+      a .donation {
+        display: none;
+      }
+    }
+
 
     h2.state {
       text-align: left;
