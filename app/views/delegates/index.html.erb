@@ -1,7 +1,7 @@
 <h1>Delegates</h1>
 <amp-accordion>
   <% @delegates.each do |k,v| %>
-    <section>
+    <section expanded>
       <h2 class='state'>
         <%= "(#{v.length})&nbsp;#{k}".html_safe %>
       </h2>
