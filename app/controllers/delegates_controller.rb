@@ -6,6 +6,7 @@ class DelegatesController < ApplicationController
   def index
     if params[:state]
       @delegates = Delegate.where(state: params[:state]).where("links like ?", "%gofundme%")
+      @delegates.first or redirect_to "http://www.adoptaberniedelegate.com/" and return
     else
       @delegates = Delegate.all
       render "boring_index"

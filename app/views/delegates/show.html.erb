@@ -1,1 +1,2 @@
 <%= render partial: "show", locals: { delegate: @delegate } %>
+<%= render partial: "twitter_tags", locals: { title: pretty_name(@delegate), description: "Adopt this Bernie Delegate from #{@delegate.state}" } %>

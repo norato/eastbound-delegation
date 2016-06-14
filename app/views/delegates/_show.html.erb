@@ -6,8 +6,8 @@
 <div class="show-delegate">
   <amp-carousel width=310 height=513  layout="responsive" type="slides">
     <% delegate.links.split(" ").each_with_index do |l,i| %>
-      <div>
-        <% if l[/gofundme/] %>
+      <% if l[/gofundme/] %>
+        <div>
           <amp-iframe height=473 width=468
               sandbox="allow-scripts allow-same-origin allow-popups"
               layout="fixed"
@@ -15,12 +15,8 @@
               src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
             <amp-img height=513 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
           </amp-iframe>
-        <% else %>
-          <a href="<%= l %>">
-            Fundraising link #<%= i %>
-          </a>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
   </amp-carousel>
 </div>

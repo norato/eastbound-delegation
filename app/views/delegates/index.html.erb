@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Delegates</h1>
+<%= render partial: "twitter_tags", locals: { title: "Adopt These Bernie Delegates from #{params[:state]}", description: "Share to help these #{@delegates.length} Bernie delegates reach Philly!" } %>
 <amp-accordion>
   <section expanded>
     <h2 class='state'>
@@ -40,8 +38,8 @@
           </div>
         <% end %>
       </amp-carousel>
-      <div>
-        <% @delegates.each do |delegate| %>
+      <% @delegates.each do |delegate| %>
+        <div class='delegate small'>
           <amp-fit-text
             media="(max-width: 519px)"
             height="40px">
@@ -55,13 +53,14 @@
                   layout="fixed"
                   frameborder="0"
                   src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
-                <amp-img height=400 width=400 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+                <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
               </amp-iframe>
               <amp-social-share media="(max-width: 519px)" id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </section>
 </amp-accordion>
+<amp-social-share id="tweeter-state" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_state(params[:state]) %>" type="twitter"></amp-social-share>
