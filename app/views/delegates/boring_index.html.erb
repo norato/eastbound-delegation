@@ -9,7 +9,6 @@
       <th>Name last</th>
       <th>Name first</th>
       <th>Links</th>
-      <th colspan="1"></th>
     </tr>
   </thead>
 
@@ -17,14 +16,13 @@
     <% @delegates.each do |delegate| %>
       <tr>
         <td><a href="/states/<%= URI.encode(delegate.state) %>/delegates"><%= delegate.state %></td>
-        <td><%= delegate.name_last %></td>
-        <td><%= delegate.name_first %></td>
+        <td><%= link_to delegate.name_last, delegate_path(delegate) %></td>
+        <td><%= link_to delegate.name_first, delegate_path(delegate) %></td>
         <td>
           <% delegate.links.split(" ").each_with_index do |l,i| %>
             <%= link_to "Resource #{i + 1}", l %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', delegate %></td>
       </tr>
     <% end %>
   </tbody>
