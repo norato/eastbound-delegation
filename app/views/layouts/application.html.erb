@@ -15,6 +15,7 @@
 	<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>
   <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
 	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js" async></script>
+  <script async custom-element="amp-analytics"    src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
   <style amp-custom>
     body header div {
@@ -128,6 +129,29 @@
   </style>
 </head>
 <body>
+  <amp-analytics type="googleanalytics" id="2x1-image">
+    <script type="application/json">
+      {
+        "vars": {
+          "account": "UA-78168080-1"
+        },
+        "triggers": {
+          "trackPageview": {
+            "on": "visible",
+            "request": "pageview"
+          },
+          "trackAnchorClicks": {
+            "on": "click",
+            "selector": "a",
+            "request": "event",
+            "vars": {
+              "eventLabel": "clicked on a link"
+            }
+          }
+        }
+      }
+    </script>
+  </amp-analytics>
   <header>
     <a href='/'><div></div></a>
   </header>
@@ -145,3 +169,4 @@
   </footer>
 </body>
 </html>
+

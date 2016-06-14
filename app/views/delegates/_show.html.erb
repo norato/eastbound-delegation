@@ -20,5 +20,4 @@
     <% end %>
   </amp-carousel>
 </div>
-
 <amp-social-share id="tweeter" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>

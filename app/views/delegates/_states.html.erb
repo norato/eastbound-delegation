@@ -3,7 +3,7 @@
   height="100px"
 	layout="fixed-height">
 	<% @states.each do |state| %>
-		<a href="<%= state_delegates_url(state: state).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>"><%= state %></a>
+		<a href="<%= state_url(state) %>"><%= state %></a>
 	<% end %>
 </amp-fit-text>
 <amp-fit-text
@@ -11,7 +11,7 @@
 	layout="fixed-height"
   height="210px">
 	<% @states.each do |state| %>
-		<a href="<%= state_delegates_url(state: state).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>"><%= state %></a>
+		<a href="<%= state_url(state) %>"><%= state %></a>
 	<% end %>
 </amp-fit-text>
 <amp-fit-text
@@ -19,6 +19,6 @@
 	layout="fixed-height"
   height="300px">
 	<% @states.each do |state| %>
-		<a href="<%= state_delegates_url(state: state).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>"><%= state %></a>
+		<a href="<%= state_url(state) %>"><%= state %></a>
 	<% end %>
 </amp-fit-text>
