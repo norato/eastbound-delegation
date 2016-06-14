@@ -39,6 +39,8 @@
 			margin-left: auto;
 			margin-right: auto;
 		}
+    amp-accordion {
+    }
 
     amp-social-share {
       margin-top:7px;
@@ -72,7 +74,6 @@
 
 		.delegate {
 			text-align: center;
-      border-bottom: 4px dashed #E11;
 		}
 
 		.show-delegate {
@@ -131,6 +132,8 @@
     <a href='/'><div></div></a>
   </header>
 	<%= yield %>
+	</br>
+  <%= render partial: "delegates/states" %>
   <footer>
 		<a class='logo' href="http://www.adoptaberniedelegate.com/">
 			<amp-fit-text
