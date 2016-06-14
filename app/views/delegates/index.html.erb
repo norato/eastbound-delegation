@@ -4,7 +4,7 @@
     <h2 class='state'>
       <%= "#{params[:state]}&nbsp;(#{@delegates.length})".html_safe %>
     </h2>
-    <div>
+    <div class='delegation'>
       <amp-carousel
         media="(min-width: 520px)"
         id="<%= params[:state] %>"
