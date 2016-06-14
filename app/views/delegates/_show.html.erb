@@ -1,8 +1,8 @@
 <amp-fit-text
   height="40px">
-  <%= link_to pretty_name(delegate), delegate_path(delegate) %>
+  <%= link_to pretty_name(delegate), delegate_amp(delegate) %>
 </amp-fit-text>
-<%= link_to "See Others from #{delegate.state}", "/states/#{URI.encode(delegate.state)}/delegates" %>
+<%= link_to "See Others from #{delegate.state}", state_url(delegate.state) %>
 <div class="show-delegate">
   <amp-carousel width=310 height=513  layout="responsive" type="slides">
     <% delegate.links.split(" ").each_with_index do |l,i| %>

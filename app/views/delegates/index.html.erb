@@ -15,7 +15,7 @@
           <div class="delegate <%= delegate.state %>">
             <amp-fit-text
               height="40px">
-              <%= link_to pretty_name(delegate), delegate_path(delegate) %>
+              <%= link_to pretty_name(delegate), delegate_amp(delegate) %>
             </amp-fit-text>
             <% delegate.links.split(" ").each_with_index do |l,i| %>
               <% if l[/gofundme/] %>
@@ -26,11 +26,6 @@
                     src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
                   <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
                 </amp-iframe>
-              <% else %>
-                <a href="<%= l %>">
-                  Fundraising link #<%= i %>
-                </a>
-                </br>
               <% end %>
             <% end %>
             </br>
@@ -43,7 +38,7 @@
           <amp-fit-text
             media="(max-width: 519px)"
             height="40px">
-            <%= link_to pretty_name(delegate), delegate_path(delegate) %>
+            <%= link_to pretty_name(delegate), delegate_amp(delegate) %>
           </amp-fit-text>
           <% delegate.links.split(" ").each_with_index do |l,i| %>
             <% if l[/gofundme/] %>
