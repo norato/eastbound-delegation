@@ -15,9 +15,9 @@
   <tbody>
     <% @delegates.each do |delegate| %>
       <tr>
-        <td><a href="/states/<%= URI.encode(delegate.state) %>/delegates"><%= delegate.state %></td>
-        <td><%= link_to delegate.name_last, delegate_amp(delegate) %></td>
-        <td><%= link_to delegate.name_first, delegate_amp(delegate) %></td>
+        <td><a href="<%= state_url(delegate.state) %>" target="_self"><%= delegate.state %></td>
+        <td><%= link_to(delegate.name_last, delegate_amp(delegate), { target: "_self" }) %></td>
+        <td><%= link_to(delegate.name_first, delegate_amp(delegate), { target: "_self" }) %></td>
         <td>
           <% delegate.links.split(" ").each_with_index do |l,i| %>
             <%= link_to "Resource #{i + 1}", l %>

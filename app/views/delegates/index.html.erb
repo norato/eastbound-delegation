@@ -15,7 +15,7 @@
           <div class="delegate <%= delegate.state %>">
             <amp-fit-text
               height="40px">
-              <%= link_to pretty_name(delegate), delegate_amp(delegate) %>
+              <%= link_to pretty_name(delegate), delegate_amp(delegate), target: "_self" %>
             </amp-fit-text>
             <% delegate.links.split(" ").each_with_index do |l,i| %>
               <% if l[/gofundme/] %>
@@ -38,7 +38,7 @@
           <amp-fit-text
             media="(max-width: 519px)"
             height="40px">
-            <%= link_to pretty_name(delegate), delegate_amp(delegate) %>
+            <%= link_to pretty_name(delegate), delegate_amp(delegate), target: "_self" %>
           </amp-fit-text>
           <% delegate.links.split(" ").each_with_index do |l,i| %>
             <% if l[/gofundme/] %>
