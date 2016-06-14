@@ -126,6 +126,17 @@
 			background-position: center center;
 			background-repeat: no-repeat;
     }
+    footer div.made {
+      width: 100%;
+      max-height:52px;
+      min-height:52px;
+      background-color: #0088BA;
+      background-image: url('/made.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-top: 1em;
+    }
   </style>
 </head>
 <body>
@@ -159,6 +170,7 @@
 	</br>
   <%= render partial: "delegates/states" %>
   <footer>
+    <div class='made'></div>
 		<a class='logo' href="http://www.adoptaberniedelegate.com/">
 			<amp-fit-text
 				height="4em">
