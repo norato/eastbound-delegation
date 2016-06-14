@@ -101,6 +101,16 @@
       border-bottom: 4px dashed #E11;
     }
 
+    footer a.logo div.made {
+      width: 100%;
+      max-height:210px;
+      min-height:100px;
+      background-image: url('/made.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
     @media (min-width: 520px) {
       a .donation {
         display: none;
@@ -114,32 +124,28 @@
         width: 100%;
         height: 100px;
       }
+      footer a.logo {
+        max-width: 520px;
+      }
+
+      footer a.logo div.made {
+        width: 100%;
+        max-height:190px;
+        min-height:190px;
+        background-image: url('/made.png');
+        background-position: center center;
+        background-size: 520px;
+        background-repeat: no-repeat;
+        max-width: 520px;
+        margin-left: auto;
+        margin-right: auto;
+      }
 
     }
 
     h2.state {
       text-align: center;
       padding-left: 1em;
-    }
-    footer div.logo {
-      height: 78.5px;
-      width: 144px;
-			margin-left: auto;
-			margin-right: auto;
-      background-image: url('/source-logo.png');
-			background-size: contain;
-			background-position: center center;
-			background-repeat: no-repeat;
-    }
-    footer div.made {
-      width: 100%;
-      max-height:78px;
-      min-height:78px;
-      background-image: url('/made.png');
-      background-position: center center;
-      background-size: 300px;
-      background-repeat: no-repeat;
-      margin-top: 1em;
     }
   </style>
 </head>
@@ -174,13 +180,8 @@
 	</br>
   <%= render partial: "delegates/states" %>
   <footer>
-    <div class='made'></div>
 		<a class='logo' href="http://www.adoptaberniedelegate.com/">
-			<amp-fit-text
-				height="4em">
-				Source:
-			</amp-fit-text>
-			<div class='logo'></div>
+      <div class='made'></div>
 		</a>
   </footer>
 </body>
