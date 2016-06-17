@@ -1,2 +1,2 @@
-<%= render partial: "twitter_tags", locals: { title: "Adopt this Bernie Delegate from #{@delegate.state}", description: "Click Here! #{pretty_name(@delegate)} will be OUR voice at the Democratic Convention, let's make sure they get there. Donate & share!" } %>
+<%= render partial: "twitter_tags", locals: { title: "Adopt this Bernie Delegate from #{@delegate.state}", description: "Click Here! #{pretty_name(@delegate)} will be OUR voice at the Democratic Convention, let's make sure they get there. Donate & share!", image: (@delegate.image || "https://imgh.us/AADelegate_(1).jpg")  } %>
 <%= render partial: "show", locals: { delegate: @delegate } %>
