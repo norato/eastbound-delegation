@@ -9,7 +9,7 @@ class DelegatesController < ApplicationController
       @delegates = Delegate.where(state: params[:state]).where("links like ?", "%gofundme%")
       @delegates.first or redirect_to "http://www.adoptaberniedelegate.com/" and return
     else
-      @delegates = Delegate.all
+      @delegates = Delegate.order(:state).all
       render "boring_index"
     end
   end
@@ -31,6 +31,6 @@ class DelegatesController < ApplicationController
     end
 
     def set_states
-      @states = Delegate.where("links like ?", "%gofundme%").pluck(:state).uniq
+      @states = Delegate.where("links like ?", "%gofundme%").pluck(:state).uniq.sort
     end
 end
