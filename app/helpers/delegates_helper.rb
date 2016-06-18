@@ -2,7 +2,7 @@ module DelegatesHelper
 
   def pretty_name(delegate = nil)
     d = @delegate || delegate
-    "#{d.name_last}, #{d.name_first}"
+    "#{d.name_first} #{d.name_last}".gsub(/\(.*\)/,'').gsub(/  /, ' ')
   end
 
   def share_me(delegate = nil)
