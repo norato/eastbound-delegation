@@ -20,7 +20,7 @@
             <% delegate.links.split(" ").each_with_index do |l,i| %>
               <% if l[/gofundme/] %>
                 <amp-iframe height=473 width=468
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
                     layout="fixed"
                     frameborder="0"
                     src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
@@ -44,7 +44,7 @@
             <% if l[/gofundme/] %>
               <amp-iframe height=473 width=468
                   media="(max-width: 519px)"
-                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
                   layout="fixed"
                   frameborder="0"
                   src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
