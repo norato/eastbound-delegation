@@ -9,7 +9,8 @@ class DelegatesController < ApplicationController
       @delegates = Delegate.where(state: params[:state]).where("links like ?", "%gofundme%")
       @delegates.first or redirect_to "http://www.adoptaberniedelegate.com/" and return
     else
-      @delegates = Delegate.order(:state).all
+      @delegates = Delegate.order(:state)
+      @featured_delegates = @delegates.where.not(image: nil)
       render "boring_index"
     end
   end

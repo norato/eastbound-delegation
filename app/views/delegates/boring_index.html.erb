@@ -1,29 +1,96 @@
 <%= render partial: "twitter_tags", locals: { title: "Adopt These Bernie Delegates, Help Our Voices Be Heard", description: "Share to help these #{@delegates.length} Bernie delegates reach Philly!", image: "https://imgh.us/AADelegate_(1).jpg" } %>
-
-<h1>Delegates</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>State</th>
-      <th>Name last</th>
-      <th>Name first</th>
-      <th>Links</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @delegates.each do |delegate| %>
-      <tr>
-        <td><a href="<%= state_url(delegate.state) %>" target="_self"><%= delegate.state %></td>
-        <td><%= link_to(delegate.name_last, delegate_amp(delegate), { target: "_self" }) %></td>
-        <td><%= link_to(delegate.name_first, delegate_amp(delegate), { target: "_self" }) %></td>
-        <td>
+<amp-accordion>
+  <section expanded>
+    <h2 class='state'>
+      Featured Delegates (<%= @featured_delegates.length %>)
+    </h2>
+    <div class='delegation'>
+      <amp-carousel
+        media="(min-width: 520px)"
+        id="<%= params[:state] %>"
+        height=614
+        layout="fixed-height"
+        type="carousel">
+        <% @featured_delegates.each do |delegate| %>
+          <div class="delegate <%= delegate.state %>">
+            <amp-fit-text
+              height="40px">
+              <%= link_to(pretty_name(delegate), delegate_amp(delegate), target: "_self") %>, <%= link_to(delegate.state, state_url(delegate.state)) %>
+            </amp-fit-text>
+            <% delegate.links.split(" ").each_with_index do |l,i| %>
+              <% if l[/gofundme/] %>
+                <amp-iframe height=473 width=468
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+                    layout="fixed"
+                    frameborder="0"
+                    src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+                  <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+                </amp-iframe>
+              <% end %>
+            <% end %>
+            </br>
+            <amp-social-share media="(min-width: 520px)" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+          </div>
+        <% end %>
+      </amp-carousel>
+      <% @featured_delegates.each do |delegate| %>
+        <div class='delegate small'>
+          <amp-fit-text
+            media="(max-width: 519px)"
+            height="40px">
+              <%= link_to(pretty_name(delegate), delegate_amp(delegate), target: "_self") %>, <%= link_to(delegate.state, state_url(delegate.state)) %>
+          </amp-fit-text>
           <% delegate.links.split(" ").each_with_index do |l,i| %>
-            <%= link_to "Resource #{i + 1}", l %>
+            <% if l[/gofundme/] %>
+              <amp-iframe height=473 width=468
+                  media="(max-width: 519px)"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+                  layout="fixed"
+                  frameborder="0"
+                  src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+                <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+              </amp-iframe>
+              <amp-social-share media="(max-width: 519px)" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+            <% end %>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <section>
+    <h1>All Delegates (<%= @delegates.length %>)</h1>
+    <div class='all-table'>
+      <table>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Name</th>
+            <th>Links</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @delegates.each do |delegate| %>
+            <tr>
+              <td><a href="<%= state_url(delegate.state) %>" target="_self"><%= delegate.state %></td>
+              <td><%= link_to(pretty_name(delegate), delegate_amp(delegate), { target: "_self" }) %></td>
+              <td>
+                <% delegate.links.split(" ").each_with_index do |l,i| %>
+                  <%= link_to("Resource #{i + 1}", l) %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section expanded>
+    <h1>All States (<%= @states.length %>)</h1>
+    <div>
+      <%= render partial: "delegates/states" %>
+    </div>
+  </section>
+
+</amp-accordion>
+
