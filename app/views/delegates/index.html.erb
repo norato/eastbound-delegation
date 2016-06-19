@@ -67,4 +67,3 @@
   </section>
 </amp-accordion>
 <amp-social-share id="tweeter-state" height="60px" width="270px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_state(params[:state]) %>" type="twitter"></amp-social-share>
-<%= render partial: "delegates/states" %>
