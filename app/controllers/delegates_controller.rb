@@ -6,10 +6,10 @@ class DelegatesController < ApplicationController
   # GET /delegates.json
   def index
     if params[:state]
-      @delegates = Delegate.where(state: params[:state]).where("links like ?", "%gofundme%")
+      @delegates = Delegate.where(deleted_at: nil, state: params[:state]).where("links like ?", "%gofundme%")
       @delegates.first or redirect_to "http://www.adoptaberniedelegate.com/" and return
     else
-      @delegates = Delegate.order(:state)
+      @delegates = Delegate.order(:state).where(deleted_at: nil)
       @featured_delegates = @delegates.where.not(image: nil)
       render "boring_index"
     end
