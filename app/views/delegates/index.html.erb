@@ -24,7 +24,7 @@
                     layout="fixed"
                     frameborder="0"
                     src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
-                  <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+                  <amp-img height=473 width=468 src="/twit_header.jpg" placeholder></amp-img>
                 </amp-iframe>
               <% end %>
             <% end %>
@@ -48,7 +48,7 @@
                   layout="fixed"
                   frameborder="0"
                   src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
-                <amp-img height=473 width=468 src="https://imgh.us/eca-p16d128.png" placeholder></amp-img>
+                <amp-img layout='flex-item' src="/twit_header.jpg" placeholder></amp-img>
               </amp-iframe>
               <amp-social-share media="(max-width: 519px)" height="60px" width="240px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
             <% end %>
