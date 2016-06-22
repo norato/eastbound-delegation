@@ -29,7 +29,7 @@
               <% end %>
             <% end %>
             </br>
-            <amp-social-share media="(min-width: 520px)" height="60px" width="240px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+            <amp-social-share media="(min-width: 520px)" height="60px" width="240px" data-param-url="<%= delegate_url(delegate).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
           </div>
         <% end %>
       </amp-carousel>
@@ -50,7 +50,7 @@
                   src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
                 <amp-img layout='flex-item' src="/twit_header.jpg" placeholder></amp-img>
               </amp-iframe>
-              <amp-social-share media="(max-width: 519px)" height="60px" width="240px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+              <amp-social-share media="(min-width: 520px)" height="60px" width="240px" data-param-url="<%= delegate_url(delegate).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
             <% end %>
           <% end %>
         </div>
