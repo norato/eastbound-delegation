@@ -1,0 +1,57 @@
+<%= render partial: "twitter_tags", locals: { title: @slate.card_title, description: @slate.card_description, image: @slate.image } %>
+<h2 class='state'>
+  <%= @slate.card_title %>
+</h2>
+<div class='delegation'>
+  <amp-carousel
+    media="(min-width: 520px)"
+    id="<%= params[:state] %>"
+    height=614
+    layout="fixed-height"
+    type="carousel">
+    <% @delegates.each do |delegate| %>
+      <div class="delegate <%= delegate.state %>">
+        <amp-fit-text
+          height="40px">
+        <%= link_to pretty_name(delegate), delegate_amp(delegate), target: "_self" %>, <%= link_to "#{delegate.state}", state_url(delegate.state), target: "_self" %>
+        </amp-fit-text>
+        <% delegate.links.split(" ").each_with_index do |l,i| %>
+          <% if l[/gofundme/] %>
+            <amp-iframe height=473 width=468
+                sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+                layout="fixed"
+                frameborder="0"
+                src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+              <amp-img height=473 width=468 src="/twit_header.jpg" placeholder></amp-img>
+            </amp-iframe>
+          <% end %>
+        <% end %>
+        </br>
+        <amp-social-share media="(min-width: 520px)" height="60px" width="240px" data-param-url="<%= delegate_url(delegate).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+      </div>
+    <% end %>
+  </amp-carousel>
+  <% @delegates.each do |delegate| %>
+    <div class='delegate small'>
+      <amp-fit-text
+        media="(max-width: 519px)"
+        height="40px">
+        <%= link_to pretty_name(delegate), delegate_amp(delegate), target: "_self" %>, <%= link_to "#{delegate.state}", state_url(delegate.state), target: "_self" %>
+      </amp-fit-text>
+      <% delegate.links.split(" ").each_with_index do |l,i| %>
+        <% if l[/gofundme/] %>
+          <amp-iframe height=473 width=468
+              media="(max-width: 519px)"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+              layout="fixed"
+              frameborder="0"
+              src="https://www.gofundme.com/localgiving-single?aff=patch&nav=&url=<%= l[/[a-zA-Z0-9-_]*$/] %>">
+            <amp-img layout='flex-item' src="/twit_header.jpg" placeholder></amp-img>
+          </amp-iframe>
+          <amp-social-share media="(max-width: 519px)" height="60px" width="240px" data-param-url="<%= delegate_url(delegate).gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= share_me(delegate) %>" type="twitter"></amp-social-share>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<amp-social-share id="tweeter-state" height="60px" width="240px" data-param-url="<%= request.url.gsub(/http[s]{0,1}:\/\//, { 'http://' => "https://cdn.ampproject.org/c/", 'https://' => "https://cdn.ampproject.org/c/s/" }) %>" data-param-text="<%= @slate.tweet %>" type="twitter"></amp-social-share>

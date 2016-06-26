@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @slate.image %>
+</p>
+
+<p>
+  <strong>Card title:</strong>
+  <%= @slate.card_title %>
+</p>
+
+<p>
+  <strong>Card description:</strong>
+  <%= @slate.card_description %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @slate.title %>
+</p>
+
+<%= link_to 'Edit', edit_slate_path(@slate) %> |
+<%= link_to 'Back', slates_path %>

@@ -1,0 +1,49 @@
+<%= form_for(slate) do |f| %>
+  <% if slate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(slate.errors.count, "error") %> prohibited this slate from being saved:</h2>
+
+      <ul>
+      <% slate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_area :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tweet %>
+    <%= f.text_area :tweet %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_title %>
+    <%= f.text_area :card_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_description %>
+    <%= f.text_area :card_description %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :delegates %>
+    <%= select_tag :delegates, options_from_collection_for_select(Delegate.where("links like ?", "%gofundme%"), :id, :pretty_slate_select, @slate.delegates.present? && @slate.delegates.map(&:id)), multiple: true, style: 'min-height: 400px; min-width: 120px;' %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
