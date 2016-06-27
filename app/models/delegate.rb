@@ -6,6 +6,6 @@ class Delegate < ApplicationRecord
   end
 
   def pretty_slate_select
-    "#{id} - #{name_first} #{name_last}".gsub(/\(.*\)/,'').gsub(/  /, ' ')
+    "#{name_last}, #{name_first} ".gsub(/\(.*\)/,'').gsub(/  /, ' ') + "(#{id})"
   end
 end
