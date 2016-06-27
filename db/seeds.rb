@@ -8,5 +8,7 @@
 
 require 'csv'
 CSV.read("app/views/delegates/index.csv", headers: true, header_converters: :symbol).each do |deli|
-  Delegate.create(name_last: deli[:last], name_first: deli[:first], state: deli[:state], links: deli[:links])
+  d = Delegate.where(name_last: deli[:last], name_first: deli[:first], state: deli[:state]).first_or_initialize
+  d.links = deli[:links]
+  d.save
 end
